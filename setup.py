@@ -8,7 +8,7 @@ with open('LICENSE') as f:
 
 setup(
     name='jrdbparser',
-    version='0.0.2',
+    version='0.0.3',
     description='Parser for JRDB data',
     long_description=readme,
     author='Kanta Kuramoto',
