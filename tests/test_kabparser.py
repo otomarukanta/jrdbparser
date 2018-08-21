@@ -19,11 +19,11 @@ def test_1():
 
 def test_2():
     kab_parser = JRDBParser(schema.kab)
+    writer = JRDBAvroWriter(schema.kab)
     with open('tests/data/kab_input.txt', 'rb') as f:
         lines = f.readlines()
 
     kab_data = kab_parser.parse(lines[0])
 
     buf = BytesIO()
-    writer = JRDBAvroWriter(schema.kab)
     writer.write(buf, [kab_data])
