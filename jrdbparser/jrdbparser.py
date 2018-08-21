@@ -10,6 +10,14 @@ class JRDBParser:
 
         for field in self.schema['fields']:
             value = strip(line[field['start']:field['end']])
-            ret_dict[field['name']] = value
+
+            types = field['type'] if isinstance(field['type'], list) else [field['type']]
+
+            if 'int' in types and 'null' in types:
+                ret_dict[field['name']] = int(value) if value else None
+            elif 'int' in types:
+                ret_dict[field['name']] = int(value)
+            else:
+                ret_dict[field['name']] = value
 
         return ret_dict
