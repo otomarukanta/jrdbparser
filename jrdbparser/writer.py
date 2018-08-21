@@ -2,16 +2,12 @@ import fastavro
 
 
 class JRDBAvroWriter:
-    def __init__(self, out, schema):
+    def __init__(self, schema):
         for field in schema['fields']:
             del field['start']
             del field['end']
 
-        self.writer = fastavro.write.Writer(
-            out, schema)
+        self.schema = schema
 
-    def write(self, line: dict):
-        self.writer.write(line)
-
-    def flush(self):
-        self.writer.flush()
+    def write(self, fo, records: list):
+        fastavro.write.writer(fo, self.schema, records)

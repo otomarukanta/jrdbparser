@@ -25,6 +25,5 @@ def test_2():
     kab_data = kab_parser.parse(lines[0])
 
     buf = BytesIO()
-    writer = JRDBAvroWriter(buf, schema.kab)
-    writer.write(kab_data)
-    writer.flush()
+    writer = JRDBAvroWriter(schema.kab)
+    writer.write(buf, [kab_data])
